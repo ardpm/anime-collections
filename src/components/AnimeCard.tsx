@@ -8,11 +8,12 @@ const animeCardStyle = css({
   textAlign: 'center',
   padding: '0.5rem',
   backgroundColor: COLORS['dark-gray'],
-  borderRadius: '0.5rem',
+//   borderRadius: '0.75rem',
   cursor: 'pointer',
   '&:hover,&:focus': {
     filter: 'brightness(0.8)'
   },
+  width: '20rem',
   img: {
     objectFit: 'cover',
     borderRadius: '0.25rem',
@@ -38,19 +39,26 @@ const titleStyle = css({
   }
 })
 
+const yearStyle = css({
+    color: COLORS.gray,
+    fontSize: '0.8rem'
+  })
+
 interface AnimeCardProps {
   imageUrl: string
   title: string
+  seasonYear?: number
   onClick?: () => void
 }
 
-export default function AnimeCard({imageUrl, title, onClick}: AnimeCardProps) {
+export default function AnimeCard({imageUrl, title, seasonYear, onClick}: AnimeCardProps) {
 
   return (
     <div css={animeCardStyle} onClick={onClick}>
       {/* TODO: Add fallback image */}
-      <img src={imageUrl} alt={`${title} image`} />
+      <img src={imageUrl} alt={`${title}`} />
       <div css={titleStyle}>{title}</div>
-    </div>
+      {seasonYear && <div css={yearStyle}>{seasonYear}</div>}    
+      </div>
   )
 }

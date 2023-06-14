@@ -7,4 +7,10 @@ export const COLORS = {
   "dark-gray": "#1c1c1c",
   gray: "#757575",
   green: "#57946c",
+  yellow: "#ffd700",
+  black_background: "#1A1A1D", 
+  gray_hover: "#4E4E50",
+  red_font: "#6F2232",
+  maroon_header: "#950740",
+  red_border: "#C3073F"
 }

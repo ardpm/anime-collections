@@ -11,6 +11,7 @@ import Pagination from "../components/Pagination";
 const AnimeListPageStyle = css({
     display: 'flex',
     flexDirection: 'column',
+    paddingBottom: '5rem',
     '.pagination': {
         marginTop: '1.5rem'
     }
@@ -21,6 +22,9 @@ const AnimeListStyle = css({
     gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
     gap: '1rem',
     [media[1]]: {
+        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+    },
+    [media[2]]: {
         gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
     },
 })
@@ -58,16 +62,26 @@ function AnimeList() {
     }
 
     return (
-        <div css={AnimeListPageStyle}>
-          <div css={AnimeListStyle}>
-            {data?.Page.media.map((anime) => {
-              const { title: { romaji }, coverImage: { large }, id } = anime
-              return <AnimeCard key={id} imageUrl={large} title={romaji} onClick={() => navigate(`/animes/${id}`)} />
-            })}
-          </div>
-          <Pagination page={page} showPrev={page > 1} showNext={!!isNext} onPrev={prevPage} onNext={nextPage} />
+        <div id='animeList' css={AnimeListPageStyle}>
+            <div css={AnimeListStyle}>
+                {data?.Page.media.map((anime) => {
+                    const { title: { romaji },
+                        coverImage: { large },
+                        seasonYear,
+                        id } = anime
+                    const year = seasonYear ? seasonYear.toString() : ''
+
+                    return <AnimeCard
+                        key={id}
+                        imageUrl={large}
+                        title={`${romaji} (${year})`}
+                        onClick={() => navigate(`/animes/${id}`)}
+                    />
+                })}
+            </div>
+            <Pagination page={page} showPrev={page > 1} showNext={!!isNext} onPrev={prevPage} onNext={nextPage} />
         </div>
-      )
+    )
 }
 
 export default AnimeList;

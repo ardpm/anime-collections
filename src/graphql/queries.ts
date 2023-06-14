@@ -8,6 +8,7 @@ interface Anime {
     title: {
         romaji: string
     }
+    seasonYear?: number
 }
 
 interface PageInfo {
@@ -39,6 +40,7 @@ export const GET_ALL_ANIME = gql`
                     native
                     romaji
                 }
+                seasonYear
                 description
                 coverImage {
                     large
