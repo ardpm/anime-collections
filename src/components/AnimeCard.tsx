@@ -20,8 +20,7 @@ const animeCardStyle = css({
     width: 150,
     height: 250,
     [media[1]]: {
-      width: 200,
-      height: 300
+      height: 275
     }
   }
 })

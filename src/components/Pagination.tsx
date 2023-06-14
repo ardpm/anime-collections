@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { COLORS } from '../styles/Constant';
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from 'react-icons/bs'

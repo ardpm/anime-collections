@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { AnimeListData, AnimeListVars, GET_ALL_ANIME } from "../graphql/queries";
@@ -11,11 +12,24 @@ import Pagination from "../components/Pagination";
 const AnimeListPageStyle = css({
     display: 'flex',
     flexDirection: 'column',
-    paddingBottom: '5rem',
+    paddingBottom: 72,
     '.pagination': {
-        marginTop: '1.5rem'
-    }
-})
+      marginTop: '1.5rem',
+    },
+    [media[0]]: {
+    },
+    header: {
+      padding: '0 1rem',
+      width: 'calc(100vw - 2 * 1rem)',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      fontSize: '1.25rem',
+      [media[0]]: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      },
+    },
+  })
 
 const AnimeListStyle = css({
     display: 'grid',
@@ -68,12 +82,13 @@ function AnimeList() {
                     const { title: { romaji },
                         coverImage: { large },
                         seasonYear,
+                        bannerImage,
                         id } = anime
                     const year = seasonYear ? seasonYear.toString() : ''
 
                     return <AnimeCard
                         key={id}
-                        imageUrl={large}
+                        imageUrl={large || bannerImage}
                         title={`${romaji} (${year})`}
                         onClick={() => navigate(`/animes/${id}`)}
                     />
